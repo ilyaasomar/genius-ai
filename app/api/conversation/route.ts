@@ -1,15 +1,7 @@
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
-// old
-// import Configuration, { OpenAIApi } from "openai";
-
 import OpenAI from "openai";
-
-// old
-// const configuration = new Configuration({
-//   apiKey: process.env.OPENAI_API_KEY,
-// });
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -41,7 +33,7 @@ export async function POST(req: Request) {
       model: "gpt-3.5-turbo",
       messages,
     });
-
+    console.log(response.choices);
     return NextResponse.json(response.choices[0].message);
   } catch (error) {
     console.log("[CONVERSATION_ERROR]", error);
